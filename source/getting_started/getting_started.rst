@@ -14,30 +14,41 @@ Then you will want to clone and ``cd`` into your new repository.
 
 Assuming you already have conda available, installing the dependencies of this template should be as easy as:
 
-``conda env create -f environment.yml``
+``conda env create --name NAME --file environment.yml``
+
+Where ``NAME`` is of your choice.
+
+Then:
+
+``conda activate NAME``
+
+**Optional**
+
+You can also set a ``datasets`` directory that the repository will read from. In order to do this you will need to add a line to your ``.bashrc`` (or whichever shell you are using) that looks like:
+
+``export PYTORCH_DATA_LOC=/disk/scratch_ssd/``
+
+This, for instance, is the data location I have set on one of our remote machines. I have it set differently on my personal laptop, so I never need to change config files or pass extra args to move between machines.
+
+Assuming you are in the base directory of the repository, you can then run
+
+``pytest``
+
+to verify that things are working on your machine.
 
 --------
 Overview
 --------
-Since the project is relatively small, we can see a picture of the directories::
+When you first download the repository, it should look something like this::
 
   ├── INSTALL.md
   ├── LICENSE
   ├── README.md
-  ├── configs
+  ├── experiment_files
   ├── datasets
+  |   ├── dataset_loading_hub.py
+  |   ├── custom_transforms.py
   ├── log
-  │   ├── dev
-  │   │   ├── images
-  │   │   │   ├── test
-  │   │   │   ├── train
-  │   │   │   └── val
-  │   │   ├── saved_models
-  │   │   └── summary_logs
-  │   ├── experiment_ResNet9_cifar10_0_9add9a5.checkpoint
-  │   └── snapshots
-  │       └── resnet_101_cifar
-  │           └── snapshot.tar.gz
   ├── models
   │   ├── __init__.py
   │   ├── auto_builder_models.py
@@ -45,8 +56,6 @@ Since the project is relatively small, we can see a picture of the directories::
   │   ├── resnet.py
   │   └── wresnet.py
   ├── notebooks
-  │   ├── Cifar-10-results.pdf
-  │   ├── Cifar-100-results.pdf
   │   ├── plot-results.ipynb
   │   └── utils.py
   ├── test
@@ -55,10 +64,25 @@ Since the project is relatively small, we can see a picture of the directories::
   └── utils
       ├── arg_parsing.py
       ├── cinic_utils.py
-      ├── custom_transforms.py
-      ├── dataset_loading_hub.py
-      ├── datasets.py
       ├── gpu_selection_utils.py
       ├── metric_tracking.py
       ├── storage.py
       └── torchsummary.py
+
+The core of this template exists in:
+
+* ``train.py`` - where the training logic and hyperparameters live
+* ``datasets/`` - where all the dataset loading happens (including augmentations)
+* ``models/`` - where the models are built (either via ``auto_builder_models`` or through the ``model_zoo``)
+
+All of the extra neat features in the repository live in the ``utils/`` folder, such as:
+* automated metric tracking
+* automated gpu selection
+* some useful extensions to argparse
+* many other things
+
+Checkpoints and metric files will be saved in ``log``.
+
+Configurations for running experiments via ``json`` files are stored in ``experiment_files``.
+
+We also encourage you to write tests for your code and put them in ``test/`` (although we ourselves are guilty of not staying on top of this).

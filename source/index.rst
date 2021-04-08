@@ -15,6 +15,7 @@ It should take care of standard data and model loading, metric tracking, scaling
    :caption: Getting Started
 
    getting_started/getting_started
+   getting_started/reporting_fixing_bugs
 
 
 .. toctree::
