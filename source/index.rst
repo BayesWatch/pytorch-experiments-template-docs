@@ -22,4 +22,5 @@ It should take care of standard data and model loading, metric tracking, scaling
    :maxdepth: 1
    :caption: Tutorials
 
+   tutorials/train_mnist
    tutorials/stochastic_depth

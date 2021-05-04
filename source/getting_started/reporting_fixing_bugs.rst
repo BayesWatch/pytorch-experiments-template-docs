@@ -2,7 +2,7 @@
 Reporting or Fixing Bugs
 ========================
 
-If you spot a bug (or have a feature request) and aren't what to do, feel free to liberally open GitHub issues!
+If you spot a bug (or have a feature request) and aren't sure what to do, feel free to liberally open GitHub issues!
 
 If you spot a bug and are willing to fix it, then here's how to submit a pull request:
 

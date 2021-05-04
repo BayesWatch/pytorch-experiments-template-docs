@@ -2,16 +2,13 @@
 Installation and Overview
 =========================
 
-------------
-Installation
-------------
+We encourage the use of `conda` to get setup. Our current preference is for `miniforge <https://github.com/conda-forge/miniforge>`_.
 
-In order to use this template, go to the GitHub repository and click the "Use this template" button:
+If you are working on the Edinburgh GPU machines you will want to set your conda home to be in scratch space (i.e. start by doing ``cd /disk/scratch/``, then ``mkdir YOURNAME``, ``cd YOURNAME``, and then install conda).
 
-.. image:: resources/use_this_template.png
-
-Then you will want to clone and ``cd`` into your new repository.
-
+------------------
+Setup Instructions
+------------------
 Assuming you already have conda available, installing the dependencies of this template should be as easy as:
 
 ``conda env create --name NAME --file environment.yml``
@@ -22,7 +19,19 @@ Then:
 
 ``conda activate NAME``
 
-**Optional**
+------------------
+Using the template
+------------------
+
+In order to use this template, go to the GitHub repository and click the "Use this template" button:
+
+.. image:: resources/use_this_template.png
+
+Then you will want to clone and ``cd`` into your new repository.
+
+++++++++
+Optional
+++++++++
 
 You can also set a ``datasets`` directory that the repository will read from. In order to do this you will need to add a line to your ``.bashrc`` (or whichever shell you are using) that looks like:
 
@@ -79,7 +88,6 @@ All of the extra neat features in the repository live in the ``utils/`` folder, 
 * automated metric tracking
 * automated gpu selection
 * some useful extensions to argparse
-* many other things
 
 Checkpoints and metric files will be saved in ``log``.
 
